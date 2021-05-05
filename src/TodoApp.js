@@ -10,6 +10,9 @@ function TodoApp(){
     const [todos,setTodos] = useState(intialTodos)
 
     const addTodo = newTodo =>{
+        if(newTodo === ''){
+            return
+        }
         setTodos([...todos,{id:uuid(),name:newTodo,completed:false}])
     }
     const clearAll = () =>{
@@ -18,17 +21,22 @@ function TodoApp(){
     }
     const removeTodo = (e) =>{
         const id = e.target.parentElement.id
-        const newTodos= [...todos.filter(item => item.id!= id )]
+        const newTodos= [...todos.filter(item => item.id!== id )]
         setTodos([...newTodos])
         console.log(e.target.parentElement.id);
     }
+    const editTodo = (id,newTodo) =>{
+        const updated = todos.map(todo =>
+            todo.id===id? {...todo,name:newTodo}:todo )
+            setTodos(updated)
+    }
     return (
-        <div className="container border p-2 bg shadow">
-            <div className="row ">
-            <div className="col-md-6 my-2 mx-auto p-2">
+        <div className="container p-2">
+            <div className="row">
+            <div className="col-md-6  bg shadow my-2 mx-auto  p-2">
             <h1>Todos</h1>
             <TodoForm clearAll={clearAll} addTodo={addTodo} />
-            <TodoList removeTodo={removeTodo} todos={todos}/>
+            <TodoList edit={editTodo} removeTodo={removeTodo} todos={todos}/>
             </div>
 
             </div>

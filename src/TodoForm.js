@@ -5,7 +5,7 @@ function TodoForm(props){
     return(
         <div className="container">
            <div className="row">
-               <div className="col-lg-8 float-start">
+               <div className="">
                    <label>Task </label>
                    <input value={todo} onChange={setTodo} type="text" className="form-control my-2 p-2"/>
                    <button onClick={()=>{

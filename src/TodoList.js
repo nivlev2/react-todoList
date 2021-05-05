@@ -1,11 +1,15 @@
 import React from 'react'
+import {useState} from 'react'
+import Todo from './Todo'
+
 function TodoList(props){
-    console.log(props.todos);
+    const [onEdit,setOnEdit] = useState(false)
+    const togleOnEdit = (e) =>{
+        setOnEdit(!onEdit)
+    }
     return (
         <div className="text-start">
-            {props.todos.map(todo => <div id={todo.id} key={todo.id} className="border p-2 m-2 shadow h4">{todo.name}
-            <button onClick={props.removeTodo} className="float-end btn text-decoration-none ">
-            ❌</button></div>)}
+            {props.todos.map(todo => <Todo key={todo.id} edit={props.edit} togleOnEdit={togleOnEdit} onEdit={onEdit} removeTodo={props.removeTodo} todo={todo}/>)}
         </div>
     )
 }
