@@ -2,10 +2,10 @@ import React from 'react'
 
 function TodoList(props){
     return (
-        <div>
-            {props.todos.map(todo => <div className="border p-2 m-2 text-light h4">{todo.name}
-            <a className="float-end text-decoration-none text-light">
-                {todo.completed ? "✔️":"❌"}</a></div>)}
+        <div className="text-start">
+            {props.todos.map(todo => <div className="border p-2 m-2 shadow h4">{todo.name}
+            <button className="float-end btn text-decoration-none ">
+            ❌</button></div>)}
         </div>
     )
 }

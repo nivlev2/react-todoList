@@ -5,7 +5,7 @@ export default (input) =>{
         setValue(e.target.value)
     }
     const reset = ()=>{
-        value = ""
+        setValue('')
     }
-    return [value,handleInput]
+    return [value,handleInput,reset]
 }
