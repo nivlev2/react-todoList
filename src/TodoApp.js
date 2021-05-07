@@ -4,11 +4,14 @@ import TodoList from './TodoList'
 // import FormTools from './hooks/FormTools'
 import {v4 as uuid} from 'uuid'
 import {useState} from 'react'
+import {useEffect} from 'react'
 
 function TodoApp(){
-    const intialTodos = []
+    const intialTodos = localStorage["todos"] ? JSON.parse(localStorage["todos"]):"[]"
     const [todos,setTodos] = useState(intialTodos)
-
+    useEffect(()=>{
+        localStorage.setItem('todos',JSON.stringify(todos))
+    })
     const addTodo = newTodo =>{
         if(newTodo === ''){
             return
