@@ -1,20 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {useState} from 'react'
 import Todo from './Todo'
-
-function TodoList(props){
-    const [onEdit,setOnEdit] = useState(false)
-    const togleOnEdit = (e) =>{
+import {TodosContext} from './contexts.js/todoContext'
+function TodoList(){
+    // const [onEdit,setOnEdit] = useState(false)
+    // const togleOnEdit = (e) =>{
         
-        setOnEdit(!onEdit)
-    }
+    //     setOnEdit(!onEdit)
+    // }
+    const {todos}=useContext(TodosContext)
     if(localStorage["todos"]){
         return (
             <div className="text-start">
-                {props.todos.map(todo => <Todo key={todo.id} edit={props.edit} togleOnEdit={togleOnEdit} onEdit={onEdit} removeTodo={props.removeTodo} todo={todo}/>)}
+                {todos.map(todo => <Todo key={todo.id} id={todo.id}  todo={todo}/>)}
             </div>
         )
-    
     }
     return null
 }
